@@ -14,7 +14,7 @@ GetalLabel.pack()
 DownButton = tkinter.Button(root,text="Down", bg="white", width="30")
 DownButton.pack(padx=10, pady=30)
 
-def buttonUp(e):
+def buttonUp():
     global GetalDisplay
     GetalDisplay = GetalDisplay + 1
     GetalLabel.config(text=GetalDisplay)
@@ -25,7 +25,7 @@ def buttonUp(e):
     GetalLabel.bind("<Double-Button-1>", DoubleClickUp)
     root.bind("<Double-space>", DoubleClickUp)
 
-def ButtonDown(e):
+def ButtonDown():
     global GetalDisplay
     GetalDisplay = GetalDisplay - 1
     GetalLabel.config(text=GetalDisplay)
@@ -57,15 +57,21 @@ def DoubleClickDown(e):
     GetalDisplay = GetalDisplay / 3
     GetalLabel.config(text=GetalDisplay)
 
+def ButtonBindsUp(e):
+    buttonUp()
+
+def ButtonBindsDown(e):
+    ButtonDown()
+
 UpButton.config(command=buttonUp)
 DownButton.config(command=ButtonDown)
 
 GetalLabel.bind("<Enter>", EnterLabel)
 GetalLabel.bind("<Leave>", LeaveLabel)
 
-root.bind("<Up>", buttonUp)
-root.bind("<+>", buttonUp)
-root.bind("<minus>", ButtonDown)
-root.bind("<Down>", ButtonDown)
+root.bind("<Up>", ButtonBindsUp)
+root.bind("<+>", ButtonBindsUp)
+root.bind("<minus>", ButtonBindsDown)
+root.bind("<Down>", ButtonBindsDown)
 
 root.mainloop()
