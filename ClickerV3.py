@@ -1,4 +1,3 @@
-from cmath import e
 import tkinter
 root = tkinter.Tk()
 root.geometry("250x200")
@@ -20,8 +19,9 @@ def buttonUp():
     nummerlabel.config(text=nummerdisplay)
     if nummerdisplay >= 1:
         root.config(bg="green")
-    elif nummerdisplay == 0:
+    if nummerdisplay == 0:
         root.config(bg="grey")
+    nummerlabel.bind("<Double-Button-1>", DoubleClickUp)
 
 def ButtonDown():
     global nummerdisplay
@@ -31,17 +31,28 @@ def ButtonDown():
         root.config(bg="red")
     elif nummerdisplay == 0:
         root.config(bg="grey")
+    nummerlabel.bind("<Double-Button-1>", DoubleClickDown)
 
 def LeaveLabel(e):
     if nummerdisplay > 0:
         root.config(bg="green")
-    elif nummerdisplay < 0:
+    if nummerdisplay < 0:
         root.config(bg="red")
-    elif nummerdisplay == 0:
+    if nummerdisplay == 0:
         root.config(bg="grey")
 
 def EnterLabel(e):
     root.config(bg="yellow")
+
+def DoubleClickUp(e):
+    global nummerdisplay
+    nummerdisplay = nummerdisplay * 3
+    nummerlabel.config(text=nummerdisplay)
+
+def DoubleClickDown(e):
+    global nummerdisplay
+    nummerdisplay = nummerdisplay / 3
+    nummerlabel.config(text=nummerdisplay)
 
 button.config(command=buttonUp)
 button2.config(command=ButtonDown)
