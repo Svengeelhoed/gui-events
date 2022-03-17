@@ -3,7 +3,6 @@ root = tkinter.Tk()
 root.geometry("250x200")
 root.config(bg="grey")
 GetalDisplay=0
-e=0
 
 UpButton = tkinter.Button(root,text="Up", bg="white", width="30")
 UpButton.pack(padx=10, pady=30)
