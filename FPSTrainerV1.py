@@ -26,7 +26,8 @@ def SpelScherm():
     countdown(20)
     Buttons()
 
-def countdown(count):    
+def countdown(count):   
+    global Score 
     TimerLabel.configure(text="Time Left: "  + str(count))
     if count > 0:
         root.after(1000, countdown, count-1)
@@ -34,6 +35,7 @@ def countdown(count):
         FPSLabel.destroy()
         MsgBox = messagebox.askquestion (message="gefeliciteerd, je hebt " + str(Score) + " punten gescoord! wil je opnieuw?")
         if MsgBox == 'yes':
+            Score = 0
             SpelScherm()
         else:
             root.destroy()
